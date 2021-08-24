@@ -6,6 +6,8 @@ struct balance {
     unsigned int cash;
 };
 
+// TODO - 'Random number based on time seed generation' function
+
 void Clear()
 {
     #if defined _WIN32
@@ -74,3 +76,10 @@ int mainScreen()
     else
         return -1;
 }
+
+// TODO - Balance checking function
+
+// TODO - Withdrawal function
+
+// TODO - Deposit function
+
