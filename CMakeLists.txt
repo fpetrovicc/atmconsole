@@ -3,4 +3,4 @@ project(atmconsole)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(atmconsole main.cpp)
+add_executable(atmconsole src/atm.cpp src/atm.hpp)
