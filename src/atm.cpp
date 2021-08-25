@@ -1,14 +1,15 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-multiway-paths-covered"
 // @fpetrovicc, 2021.
 #include <iostream>
 #include "atm.hpp"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "bugprone-branch-clone"
 int main()
 {
     int choice;
+    struct Balance balance = {0, 0};
+    struct Balance *bal = &balance;
+
+    balance.card = randomNum(1, 300);
+    balance.cash = randomNum(1, 100);
 
     startScreen();
 
@@ -31,12 +32,17 @@ int main()
 
         switch(choice)
         {
+            default:
+                break;
             case 1:
-                break;
+                checkBalance(bal->card, bal->cash);
+                continue;
             case 2:
-                break;
+                deposit(bal->card, bal->cash);
+                continue;
             case 3:
-                break;
+                withdraw(bal->card, bal->cash);
+                continue;
             case 4:
                 return 0;
         }

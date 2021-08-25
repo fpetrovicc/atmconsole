@@ -1,12 +1,18 @@
 // @fpetrovicc, 2021.
 #include <limits>
+#include <ctime>
 
-struct balance {
-    unsigned int card;
-    unsigned int cash;
+struct Balance {
+    int card;
+    int cash;
 };
 
-// TODO - 'Random number based on time seed generation' function
+// TODO - Improve RNG
+int randomNum(int min, int max)
+{
+    srand(time(0));
+    return (rand() % (max + 1 - min) + min);
+}
 
 void Clear()
 {
@@ -78,8 +84,61 @@ int mainScreen()
 }
 
 // TODO - Balance checking function
+void checkBalance(int& cardBal, int& cashBal)
+{
+    Clear();
+    std::cout << "ATM Simulator" << std::endl;
+    std::cout << "=============" << std::endl;
+    std::cout << "Your card balance is: " << cardBal << std::endl;
+    std::cout << "Your cash balance is: " << cashBal << std::endl;
+    std::cout << "\n[Press any key to continue]";
+    std::cin.get();
+}
 
 // TODO - Withdrawal function
+void withdraw(int& cardBal, int& cashBal)
+{
+    int choice = 0;
+    Clear();
+    std::cout << "ATM Simulator" << std::endl;
+    std::cout << "=============" << std::endl;
+    std::cout << "Card balance: " << cardBal << std::endl;
+    std::cout << "How much do you want to withdraw?: ";
+    choice = getInput(1, cardBal);
+
+    std::cout << "Transaction: " << choice << " -> Cash balance " << std::endl;
+    cardBal -= choice;
+    cashBal += choice;
+
+    std::cout << "\nNew card balance: " << cardBal << std::endl;
+    std::cout << "New cash balance: " << cashBal << std::endl;
+
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "\n[Press any key to continue]";
+    std::cin.get();
+}
 
 // TODO - Deposit function
+void deposit(int &cardBal, int &cashBal)
+{
+    int choice = 0;
+    Clear();
+    std::cout << "ATM Simulator" << std::endl;
+    std::cout << "=============" << std::endl;
+    std::cout << "Cash balance: " << cashBal << std::endl;
+    std::cout << "How much do you want to deposit?: ";
+    choice = getInput(1, cashBal);
 
+    std::cout << "Transaction: " << choice << " -> Card balance " << std::endl;
+    cardBal += choice;
+    cashBal -= choice;
+
+    std::cout << "\nNew card balance: " << cardBal << std::endl;
+    std::cout << "New cash balance: " << cashBal << std::endl;
+
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "\n[Press any key to continue]";
+    std::cin.get();
+}
